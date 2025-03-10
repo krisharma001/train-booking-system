@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TrainConnect - Book Train Tickets Online</title>
     <link rel="stylesheet" href="temp.css">
+    <!-- Include PapaParse for CSV parsing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
 </head>
 <body>
     <header>
@@ -37,7 +39,6 @@
     <div class="container">
         <div class="page-header">
             <h2 class="page-title">Train Ticket Booking</h2>
-            
             <div class="partner-badge">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M10 16l-6-6 6-6"></path>
@@ -58,41 +59,16 @@
                                 <line x1="4" y1="22" x2="4" y2="15"></line>
                             </svg>
                         </div>
-                        <input type="text" class="station-input" placeholder="Enter station name" value="Delhi - All stations (NDLS)" id="from-station">
-                        <div class="dropdown" id="from-dropdown">
-                            <div class="dropdown-item" onclick="selectStation('from-station', 'Delhi - All stations (NDLS)')">
-                                <div class="station-details">
-                                    <span class="station-full-name">Delhi - All stations</span>
-                                    <span class="station-code">NDLS</span>
-                                </div>
-                            </div>
-                            <div class="dropdown-item" onclick="selectStation('from-station', 'Delhi Cantt (DEC)')">
-                                <div class="station-details">
-                                    <span class="station-full-name">Delhi Cantt</span>
-                                    <span class="station-code">DEC</span>
-                                </div>
-                            </div>
-                            <div class="dropdown-item" onclick="selectStation('from-station', 'Delhi Sarai Rohilla (DEE)')">
-                                <div class="station-details">
-                                    <span class="station-full-name">Delhi Sarai Rohilla</span>
-                                    <span class="station-code">DEE</span>
-                                </div>
-                            </div>
-                            <div class="dropdown-item" onclick="selectStation('from-station', 'Delhi Shahdara (DSA)')">
-                                <div class="station-details">
-                                    <span class="station-full-name">Delhi Shahdara</span>
-                                    <span class="station-code">DSA</span>
-                                </div>
-                            </div>
-                        </div>
+                        <input type="text" class="station-input" placeholder="Enter station name" id="from-station">
+                        <!-- Dynamic autocomplete dropdown -->
+                        <div class="dropdown" id="from-dropdown"></div>
                     </div>
                 </div>
                 
                 <div class="swap-button" onclick="swapStations()">
-                        <img src="img/swap.png" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="12" y1="5" x2="12" y2="19"></line>
-                        <polyline points="19 12 12 19 5 12"></polyline>
-                    </svg>
+                    <img src="img/swap.png" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <polyline points="19 12 12 19 5 12"></polyline>
                 </div>
                 
                 <div class="search-group">
@@ -104,36 +80,13 @@
                                 <line x1="4" y1="22" x2="4" y2="15"></line>
                             </svg>
                         </div>
-                        <input type="text" class="station-input" placeholder="Enter station name" value="Asafpur (AFR)" id="to-station">
-                        <div class="dropdown" id="to-dropdown">
-                            <div class="dropdown-item" onclick="selectStation('to-station', 'Asafpur (AFR)')">
-                                <div class="station-details">
-                                    <span class="station-full-name">Asafpur</span>
-                                    <span class="station-code">AFR</span>
-                                </div>
-                            </div>
-                            <div class="dropdown-item" onclick="selectStation('to-station', 'Asaoti (AST)')">
-                                <div class="station-details">
-                                    <span class="station-full-name">Asaoti</span>
-                                    <span class="station-code">AST</span>
-                                </div>
-                            </div>
-                            <div class="dropdown-item" onclick="selectStation('to-station', 'Ashokapuram (ASK)')">
-                                <div class="station-details">
-                                    <span class="station-full-name">Ashokapuram</span>
-                                    <span class="station-code">ASK</span>
-                                </div>
-                            </div>
-                            <div class="dropdown-item" onclick="selectStation('to-station', 'Asifabad Road (ASAF)')">
-                                <div class="station-details">
-                                    <span class="station-full-name">Asifabad Road</span>
-                                    <span class="station-code">ASAF</span>
-                                </div>
-                            </div>
-                        </div>
+                        <input type="text" class="station-input" placeholder="Enter station name" id="to-station">
+                        <!-- Dynamic autocomplete dropdown -->
+                        <div class="dropdown" id="to-dropdown"></div>
                     </div>
                 </div>
                 
+                <!-- Rest of the form (Departure Date, Search Button, etc.) remains unchanged -->
                 <div class="search-group">
                     <label class="search-label">Departure Date</label>
                     <div class="search-input date-input-container">
@@ -218,7 +171,6 @@
             </div>
         </div>
     </div>
-<script src="temp.js"></script>
+    <script src="temp.js"></script>
 </body>
 </html>
-
